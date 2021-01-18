@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.list.new.accounts.title']}</ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable var="row" value="${listNewRegisteredAccountsPageBean.dataModelAccounts}" border="2" width="100%"  styleClass="table" >
+                        <h:column id="login">
+                            <f:facet name="header">${msg['page.register.account.form.label.login']}</f:facet>
+                            <h:outputText value="#{row.login}" />
+                        </h:column>
+                        <h:column id="name">
+                            <f:facet name="header">${msg['page.register.account.form.label.name']}</f:facet>
+                            <h:outputText value="#{row.name}" />
+                        </h:column>
+                        <h:column id="surname">
+                            <f:facet name="header">${msg['page.register.account.form.label.surname']}</f:facet>
+                            <h:outputText value="#{row.surname}" />
+                        </h:column>
+                        <h:column id="email">
+                            <f:facet name="header">${msg['page.register.account.form.label.email']}</f:facet>
+                            <h:outputText value="#{row.email}" />
+                        </h:column>
+                        <h:column id="actions">
+                            <f:facet name="header">${msg['page.list.header.label.actions']}</f:facet>
+                            <h:selectOneMenu value="#{row.accessLevel}" >
+                                <f:selectItem itemLabel="${msg['page.list.new.accounts.select.access.level']}"  />
+                                <f:selectItems  value="${listNewRegisteredAccountsPageBean.listAccessLevels}" var="accessLevel" itemValue="#{accessLevel}" itemLabel="#{accessLevel.accessLevelI18NValue}" />
+                            </h:selectOneMenu>
+                            <h:commandButton value="${msg['page.list.new.accounts.action.change.access.level']}" action="${listNewRegisteredAccountsPageBean.setAccessLevelSelectedAccountAction(row)}"/>
+                            <h:commandButton value="${msg['page.list.new.accounts.action.delete']}" action="${listNewRegisteredAccountsPageBean.deleteSelectedAccountAction(row)}"/>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputLink value="../main/index.xhtml">${msg['page.action.main']} </h:outputLink>  
+                </h:form>
+                <h:messages styleClass="messages"/>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

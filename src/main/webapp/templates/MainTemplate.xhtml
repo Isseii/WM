@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">      
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <h:outputStylesheet name="/css/bootstrap.min.css"/>
+        <h:outputStylesheet name="/css/font-awesome.min.css"/>
+        <h:outputStylesheet name="/css/style.css"/>
+        <h:outputScript name="/js/jquery.js"/>
+        <h:outputScript name="/js/bootstrap.min.js"/>
+        <title>
+            <ui:insert name="title">
+            </ui:insert>
+        </title>
+    </h:head>
+
+    <h:body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 header">
+                    <ui:insert name="header">
+                        <a href="../main/index.xhtml"><h1>  <img src="/resources/images/Warehouse_logo.png" alt="logo" width="70" height="auto"></img>  #{msg['page.main.template.header']}</h1></a>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 menu bg-info">
+                    <ui:insert name="menu">
+                        <div class="row">
+                            <nav class="navbar navbar-default">
+                                <div class="container-fluid">
+                                    <div class="navbar-header">
+                                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                            <span class="icon-bar"></span>
+                                        </button>
+                                        <a class="navbar-brand">#{msg['page.main.template.menu']}</a>
+                                    </div>
+                                    <div class="collapse navbar-collapse" id="myNavbar">
+                                        <ul class="nav navbar-nav">
+                                            <li class="active"><a href="../main/index.xhtml"><span class="glyphicon glyphicon-home" /> #{msg['page.main.title']}</a></li>
+                                            <f:subview id="noAuthenticationView" rendered="#{empty request.remoteUser}" >
+                                                <li><a href="../common/signIn.xhtml"><span class="glyphicon glyphicon-log-in"></span> #{msg['page.main.action.sign.in']}</a></li>
+                                                <li><a href="../common/resetPassword.xhtml"><span class="glyphicon glyphicon-trash"></span> #{msg['page.reset.password.title']}</a></li>
+                                                <li><a href="../common/registerAccount.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['page.main.action.register.account']}</a></li>
+                                            </f:subview>
+                                            <f:subview id="authenticationView" rendered="#{not empty request.remoteUser}" >
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#"><span class="glyphicon glyphicon-cog" /> #{msg['page.main.settings']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../common/changeMyPassword.xhtml">#{msg['page.main.action.change.my.password']}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </f:subview>
+                                            <f:subview id="administration" rendered="#{request.isUserInRole('Administration')}" >
+                                                <li><a href="../common/registerAccount.xhtml"><span class="glyphicon glyphicon-user"></span> #{msg['page.main.action.register.account']}</a></li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.account']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../account/listNewAccounts.xhtml">#{msg['page.main.action.list.new.accounts']}</a></li>
+                                                        <li><a href="../account/listAuthorizedAccounts.xhtml">#{msg['page.main.action.list.authorized.accounts']}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </f:subview>
+                                            <f:subview id="office" rendered="#{request.isUserInRole('Office')}" >
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.product']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../product/createNewProduct.xhtml">#{msg['page.create.new.product.title']}</a></li>
+                                                        <li><a href="../product/listProducts.xhtml">#{msg['page.list.products.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.contractor']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../contractor/registerContractor.xhtml">#{msg['page.register.contractor.title']}</a></li>
+                                                        <li><a href="../contractor/listContractors.xhtml">#{msg['page.list.contractors.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.location']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../location/listLocations.xhtml">#{msg['page.list.locations.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.stock']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../stock/listStock.xhtml">#{msg['page.list.stock.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.issue']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../issue/listIssuesForContractor.xhtml">#{msg['page.issues.for.contarctor.title']}</a></li>
+                                                        <li><a href="../issue/listIssuesForProduct.xhtml">#{msg['page.issues.for.product.title']}</a></li>
+                                                        <li><a href="../issue/listIssuesForLocation.xhtml">#{msg['page.issues.for.location.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </f:subview>
+                                            <f:subview id="warehouse" rendered="#{request.isUserInRole('Warehouse')}" >
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.product']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../product/listProducts.xhtml">#{msg['page.list.products.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.location']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li>
+                                                            <a href="../location/createNewLocation.xhtml">#{msg['page.create.new.location.title']}</a></li>
+                                                        <li><a href="../location/listLocations.xhtml">#{msg['page.list.locations.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.stock']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../stock/stockUp.xhtml">#{msg['page.stock.up.title']}</a></li>
+                                                        <li><a href="../stock/listStock.xhtml">#{msg['page.list.stock.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="dropdown">
+                                                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">#{msg['page.main.issue']}
+                                                        <span class="caret"></span></a>
+                                                    <ul class="dropdown-menu">
+                                                        <li><a href="../issue/listIssuesForContractor.xhtml">#{msg['page.issues.for.contarctor.title']}</a></li>
+                                                        <li><a href="../issue/listIssuesForProduct.xhtml">#{msg['page.issues.for.product.title']}</a></li>
+                                                        <li><a href="../issue/listIssuesForLocation.xhtml">#{msg['page.issues.for.location.title']}</a></li>
+                                                    </ul>
+                                                </li>
+                                            </f:subview>
+                                        </ul>
+                                        <ul class="nav navbar-nav">
+                                            <f:subview id="authenticationViewAll" rendered="#{not empty request.remoteUser}" >
+                                                <li>
+                                                    <a href="../common/logout.xhtml">
+                                                        <span class="glyphicon glyphicon-off"></span> ${msg['page.main.action.close.session']}</a>
+                                                </li>
+                                            </f:subview>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </nav> 
+                        </div>
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 content" >
+                    <ui:insert name="content">
+                    </ui:insert>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 footer">
+                    <ui:insert name="footer">
+                        <h4><span class="glyphicon glyphicon-user" /> #{msg['page.main.sign.in.user']} ${mainApplicationPageBean.myLogin}</h4>
+                    </ui:insert>
+                </div>              
+            </div>
+        </div>
+    </h:body>
+</html>

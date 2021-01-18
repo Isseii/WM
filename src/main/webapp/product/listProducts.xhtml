@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.list.products.title']}</ui:define>
+            <ui:define name="content">
+                <h:form>
+                    <h:dataTable var="row" value="${listProductsPageBean.dataModelProducts}" border="2" width="100%"  styleClass="table" >
+                        <h:column id="productSymbol">
+                            <f:facet name="header">${msg['page.create.new.product.form.label.product.symbol']}</f:facet>
+                            <h:outputText value="#{row.productSymbol}" />
+                        </h:column>
+                        <h:column id="description">
+                            <f:facet name="header">${msg['page.create.new.product.form.label.description']}</f:facet>
+                            <h:outputText value="#{row.description}" />
+                        </h:column>
+                        <h:column id="price">
+                            <f:facet name="header">${msg['page.create.new.product.form.label.price']}</f:facet>
+                            <h:outputText value="#{row.price}" />
+                        </h:column>
+                        <h:column id="weight">
+                            <f:facet name="header">${msg['page.create.new.product.form.label.weight']}</f:facet>
+                            <h:outputText value="#{row.weight}" />
+                        </h:column>
+                        <h:column id="easilyDamage">
+                            <f:facet name="header">${msg['page.create.new.product.form.label.easily.damage']}</f:facet>
+                            <h:selectBooleanCheckbox value="#{row.easilyDamage}" disabled="true"/>
+                        </h:column>
+                        <h:column id="actions">
+                            <f:facet name="header">${msg['page.list.header.label.actions']}</f:facet>
+                            <f:subview id="onlyOffice" rendered="#{request.isUserInRole('Office')}" >
+                                <h:commandButton value="${msg['page.list.products.action.edit.product']}" action="${listProductsPageBean.editProductAction(row)}"/>
+                                <h:commandButton value="${msg['page.list.products.action.delete.product']}" action="${listProductsPageBean.deleteSelectedProductAction(row)}"/>
+                            </f:subview>
+                        </h:column>
+                    </h:dataTable>
+                    <h:outputLink value="../main/index.xhtml">${msg['page.action.main']} </h:outputLink>  
+                </h:form>
+                <h:messages styleClass="messages" />
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

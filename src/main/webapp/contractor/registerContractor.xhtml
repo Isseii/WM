@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:body>
+        <ui:composition template="/templates/MainTemplate.xhtml">   
+            <ui:define name="title" >#{msg['page.register.contractor.title']}</ui:define>
+            <ui:define name="content">
+                <h:form id="RegisterContractorForm" styleClass="center_content">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid columns="2" styleClass="table">
+                        #{msg['page.register.contractor.form.label.contractor.number']}*: 
+                        <h:inputText id="contractorNumber" value="${contractorRegistrationPageBean.contractorDTO.contractorNumber}" required="true" maxlength="15" size="105" validatorMessage="#{msg['contractor.validator.contractor.number']}">
+                            <f:validateRegex pattern="[0-9]{13}" />
+                        </h:inputText>
+                        #{msg['page.register.contractor.form.label.contractor.name']}*: 
+                        <h:inputText id="contractorName" value="${contractorRegistrationPageBean.contractorDTO.contractorName}" required="true" maxlength="100" size="105" validatorMessage="#{msg['contractor.validator.contractor.name']}">
+                            <f:validateRegex pattern="^[A-ZĄĆĘŁŃÓŚŹŻ0-9]{1}[a-zA-Z0-9ąćęłńóśźżĄĆĘŁŃÓŚŹŻ\ \'\-\.]+" />
+                        </h:inputText>
+                        #{msg['page.register.contractor.form.label.nip']}: 
+                        <h:inputText id="nip" value="${contractorRegistrationPageBean.contractorDTO.nip}" maxlength="13" size="105" validatorMessage="#{msg['contractor.validator.nip']}">
+                            <f:validateRegex pattern="(([0-9]{3}-){2}([0-9]{2}-){1}[0-9]{2})?" />
+                        </h:inputText>
+                        #{msg['page.register.contractor.form.label.regon']}: 
+                        <h:inputText id="regon" value="${contractorRegistrationPageBean.contractorDTO.regon}" maxlength="14" size="105" validatorMessage="#{msg['contractor.validator.regon']}">
+                            <f:validateRegex pattern="([0-9]{9,14})?" />
+                        </h:inputText>
+                        #{msg['page.register.contractor.form.label.street']}*: 
+                        <h:panelGrid columns="5">
+                            <h:inputText id="street" value="${contractorRegistrationPageBean.contractorDTO.street}" required="true" maxlength="50" size="50" validatorMessage="#{msg['contractor.validator.street']}">
+                                <f:validateRegex pattern="^[A-ZĄĆĘŁŃÓŚŹŻ0-9]{1}[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\ \'\-0-9\.]+" />
+                            </h:inputText>
+                            &nbsp; &nbsp;#{msg['page.register.contractor.form.label.house']}*: &nbsp;
+                            <h:inputText id="house" value="${contractorRegistrationPageBean.contractorDTO.house}" required="true" maxlength="10" size="10" validatorMessage="#{msg['contractor.validator.house']}">
+                                <f:validateRegex pattern="[0-9]+[A-Za-z\ ]{0,10}" />
+                            </h:inputText>
+                            &nbsp; &nbsp;#{msg['page.register.contractor.form.label.apartment']}: &nbsp;
+                            <h:inputText id="apartment" value="${contractorRegistrationPageBean.contractorDTO.apartment}" maxlength="10" size="10" validatorMessage="#{msg['contractor.validator.apartment']}">
+                                <f:validateRegex pattern="[0-9]*[A-Za-z\ ]{0,10}" />
+                            </h:inputText>
+                        </h:panelGrid>
+                        #{msg['page.register.contractor.form.label.zip']}*: 
+                        <h:panelGrid columns="3">
+                            <h:inputText id="zip" value="${contractorRegistrationPageBean.contractorDTO.zip}"  required="true" maxlength="10" size="10" validatorMessage="#{msg['contractor.validator.zip']}">
+                                <f:validateRegex pattern="[0-9]{2}\-{1}[0-9]{3}" />
+                            </h:inputText>
+                            &nbsp; &nbsp;#{msg['page.register.contractor.form.label.city']}*: &nbsp;
+                            <h:inputText id="city" value="${contractorRegistrationPageBean.contractorDTO.city}"  required="true" maxlength="50" size="78" validatorMessage="#{msg['contractor.validator.city']}">
+                                <f:validateRegex pattern="^[A-ZĄĆĘŁŃÓŚŹŻ]{1}[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\ \'\-]+" />
+                            </h:inputText>
+                        </h:panelGrid>
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" value="#{msg['page.register.contractor.form.action.register']}" action="${contractorRegistrationPageBean.registerContractorAction()}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="main" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

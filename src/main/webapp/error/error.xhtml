@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+
+        <ui:composition template="/templates/MainTemplate.xhtml">
+
+            <ui:define name="title">
+                ${msg['page.error.title']}
+            </ui:define>
+
+            <ui:define name="content">
+                <p style="font-size: larger; color: #761c19; font-style: oblique;"> ${msg['page.error.runtime.error']} </p>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

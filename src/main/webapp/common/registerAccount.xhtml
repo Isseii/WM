@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">   
+            <ui:define name="title" >#{msg['page.register.account.title']}</ui:define>
+            <ui:define name="content">
+                <h:form id="RegisterForm" styleClass="center_content">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid columns="2" styleClass="table">
+                        #{msg['page.register.account.form.label.name']}*: 
+                        <h:inputText id="name" value="${accountRegistrationPageBean.accountDTO.name}" required="true" maxlength="30" size="80" validatorMessage="#{msg['account.validator.name']}">
+                            <f:validateRegex pattern="^[A-ZĄĆĘŁŃÓŚŹŻ]{1}[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\ \'\-]+" />
+                        </h:inputText>
+                        #{msg['page.register.account.form.label.surname']}*: 
+                        <h:inputText id="surname" value="${accountRegistrationPageBean.accountDTO.surname}" required="true" maxlength="50" size="80" validatorMessage="#{msg['account.validator.surname']}">
+                            <f:validateRegex pattern="^[A-ZĄĆĘŁŃÓŚŹŻ]{1}[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\ \'\-]+" />
+                        </h:inputText>
+                        #{msg['page.register.account.form.label.email']}*: 
+                        <h:inputText id="email" value="${accountRegistrationPageBean.accountDTO.email}" required="true" maxlength="100" size="80" validatorMessage="#{msg['account.validator.email']}">
+                            <f:validateRegex pattern="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})" />
+                        </h:inputText>
+                        #{msg['page.register.account.form.label.login']}*: 
+                        <h:inputText id="login" value="${accountRegistrationPageBean.accountDTO.login}" required="true" maxlength="30" size="80" validatorMessage="#{msg['account.validator.login']}">
+                            <f:validateRegex pattern="[A-Z]{2,3}[a-z]{1,25}[0-9]{0,2}" />
+                        </h:inputText>
+                        #{msg['page.register.account.form.label.password']}*: 
+                        <h:inputSecret id="password" value="${accountRegistrationPageBean.accountDTO.password}" required="true" maxlength="20" size="80" validatorMessage="#{msg['account.validator.password']}">
+                            <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#!$%]).{6,20})" />
+                        </h:inputSecret>
+                        #{msg['page.register.account.form.label.password.repeat']}*: 
+                        <h:inputSecret id="passwordRepeat" value="${accountRegistrationPageBean.passwordRepeat}" required="true" maxlength="20" size="80"/>
+                        #{msg['page.register.account.form.label.question']}*: 
+                        <h:inputText id="question" value="${accountRegistrationPageBean.accountDTO.question}"  required="true" maxlength="80" size="80" validatorMessage="#{msg['account.validator.question']}">
+                            <f:validateRegex pattern="[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9\ \'\-\:]+\??" />
+                        </h:inputText>
+                        #{msg['page.register.account.form.label.answer']}*: 
+                        <h:inputText id="answer" value="${accountRegistrationPageBean.accountDTO.answer}"  required="true" maxlength="30" size="80" validatorMessage="#{msg['account.validator.answer']}">
+                            <f:validateRegex pattern="[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ0-9\ \'\.]+" />
+                        </h:inputText>
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" value="#{msg['page.register.account.form.action.register']}"  action="${accountRegistrationPageBean.registerAccountAction()}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="main" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

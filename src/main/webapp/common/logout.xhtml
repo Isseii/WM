@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >${msg['page.main.action.close.session']}</ui:define>
+            <ui:define name="content">
+                <h:form>  
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid styleClass="table">
+                        #{msg['page.logout.question']}? <br /><br />
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" action="#{mainApplicationPageBean.signOutAction()}" value="${msg['page.close.session.action.logout']}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="main" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

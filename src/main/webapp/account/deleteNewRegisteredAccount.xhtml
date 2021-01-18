@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.delete.new.registered.account.title']}</ui:define>
+            <ui:define name="content">
+                <h:form id="DeleteNewAccountForm" styleClass="center_content">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid columns="2" width="100%" styleClass="table">
+                        <table>
+                            <tr> #{msg['page.delete.new.registered.account.question']}</tr>
+                            <tr>
+                                <h:outputText id="login" value="${deleteNewAccountPageBean.accountDTO.login}" />
+                            </tr>
+                        </table>
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" value="#{msg['page.delete.new.registered.account.form.action.delete']}" action="${deleteNewAccountPageBean.deleteAccountAction()}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="listNewRegisteredAccounts" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

@@ -1,0 +1,66 @@
+.header{
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+.menu{
+}
+
+.content{
+    width: 100%;
+    min-height: 500px;
+    height: 100%;
+    border: 1px solid black;
+    padding: 10px;
+    box-sizing: border-box;
+    float: left;
+}
+
+.footer{
+    border: 1px solid black;;
+    text-align: center;
+    padding: 10px;
+}
+
+.figure{
+    width: 99%;
+}
+
+.figure img{
+    width: 100%;
+}
+
+.navbar-default {
+    color: white;
+}
+
+.navbar-default .navbar-nav {
+    font-size: large;
+    font-style: normal;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu {
+    font-size: large;
+    background-color: #69899f;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a {
+    color: #d7e2e9;
+}
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:hover,
+
+.navbar-default .navbar-nav > li > .dropdown-menu > li > a:focus {
+    color: white;
+    background-color: #425766;}
+
+.table{
+    border-spacing: 1px;
+    font-size: large;
+    background-color: #d7cfcf;
+}
+
+.messages{
+    font-size: larger;
+    color: #761c19;
+    font-style: oblique;
+}

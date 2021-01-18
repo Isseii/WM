@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.main.action.sign.in']}</ui:define>
+            <ui:define name="content">
+                <form method="post" action="j_security_check">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid styleClass="table">
+                        <table>                       
+                            <tr><td> ${msg['page.register.account.form.label.login']}*:</td>
+                                <td><input type="text" name= "j_username" /></td></tr>
+                            <tr><td> ${msg['page.register.account.form.label.password']}*:</td>
+                                <td><input type="password" name= "j_password" /></td></tr>
+                        </table>
+                    </h:panelGrid>
+                    <p><br />
+                        <input type="submit" value="${msg['signIn.action.signIn']}" />
+                    </p>
+                </form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

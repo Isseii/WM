@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.edit.location.title']}</ui:define>
+            <ui:define name="content">
+                <h:form id="EditLocationForm" styleClass="center_content">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid columns="2" styleClass="table">
+                        #{msg['page.create.new.location.form.label.location']}: 
+                        <h:inputText id="locationSymbol" disabled="true" value="${editLocationPageBean.locationDTO.locationSymbol}" required="true" size="16" />
+
+                        #{msg['page.create.new.location.form.label.location.type']}*: 
+                        <h:selectOneMenu id="locationType" value="#{editLocationPageBean.locationDTO.locationType}" required="true" >
+                            <f:selectItems value="${editLocationPageBean.listLocationTypes}" var="locationType" itemValue="#{locationType}" itemLabel="#{locationType.loactionTypeI18NValue}" /> 
+                        </h:selectOneMenu>
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" value="#{msg['page.edit.location.form.action.save']}" action="${editLocationPageBean.saveEditLocationAction()}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="listLocations" immediate="true"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>

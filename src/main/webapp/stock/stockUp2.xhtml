@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <body>
+        <ui:composition template="/templates/MainTemplate.xhtml">
+            <ui:define name="title" >#{msg['page.stock.up.title']}</ui:define>
+            <ui:define name="content">
+                <h:form id="StockUp2Form" styleClass="center_content">
+                    <h:messages styleClass="messages"/>
+                    <h:panelGrid columns="2" styleClass="table">
+                        #{msg['page.stock.up.form.label.contractor.name']}: 
+                        <h:inputText id="contractorNumber" value="#{stockUpPageBean2.stockDTO.contractor.contractorNumber}" disabled="true" size="80" label="#{contractorNumber.displayLabel}"/>
+                        #{msg['page.stock.up.form.label.product.symbol']}: 
+                        <h:inputText id="productSymbol" value="#{stockUpPageBean2.stockDTO.product.productSymbol}"  disabled="true" size="80"/> 
+                        #{msg['page.stock.up.form.label.product.description']}: 
+                        <h:inputText id="description" value="${stockUpPageBean2.stockDTO.product.description}" disabled="true" size="80" />
+                        #{msg['page.stock.up.form.label.quantity']}:
+                        <h:inputText id="quantity" value="${stockUpPageBean2.stockDTO.quantity}" disabled="true" size="80" />
+                        #{msg['page.stock.up.form.label.product.price']}: 
+                        <h:inputText id="price" value="${(stockUpPageBean2.stockDTO.product.price) * (stockUpPageBean2.stockDTO.quantity)}" disabled="true"  size="80" />
+                        #{msg['page.stock.up.form.label.product.weight']}: 
+                        <h:inputText id="weight" value="${(stockUpPageBean2.stockDTO.product.weight) * (stockUpPageBean2.stockDTO.quantity)}" disabled="true"  size="80" />
+                        #{msg['page.stock.up.form.label.location.symbol']}:
+                        <h:inputText id="locationSymbol" value="#{stockUpPageBean2.stockDTO.location.locationSymbol}"  disabled="true" size="80"/>
+                        #{msg['page.stock.up.form.label.location.max.weight']}: 
+                        <h:inputText id="maxWeight" value="${stockUpPageBean2.stockDTO.location.maxWeight}" disabled="true" size="80" />
+                    </h:panelGrid>
+                    <h:commandButton styleClass="button" value="#{msg['page.stock.up.form.form.action.create']}" action="${stockUpPageBean2.toStockUpAction()}" />
+                    <h:commandButton value="#{msg['page.form.action.cancel']}"  action="stockUp" />
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
