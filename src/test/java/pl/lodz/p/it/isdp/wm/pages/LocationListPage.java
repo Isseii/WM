@@ -43,4 +43,17 @@ public class LocationListPage extends NavbarPage {
                 .map(td -> td.getText().trim())
                 .collect(Collectors.toList());
     }
+
+    public LocationRemovePage clickRemoveLocation(String name) {
+
+        WebElement row = findRowElementByLocationName(name);
+
+        if (row == null) return null;
+
+        row.findElements(By.tagName("input"))
+                .get(2)
+                .click();
+
+        return new LocationRemovePage(driver, name);
+    }
 }
