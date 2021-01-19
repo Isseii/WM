@@ -56,4 +56,17 @@ public class LocationListPage extends NavbarPage {
 
         return new LocationRemovePage(driver, name);
     }
+
+    public LocationEditPage clickEditLocation(String name) {
+
+        WebElement row = findRowElementByLocationName(name);
+
+        if (row == null) return null;
+
+        row.findElements(By.tagName("input"))
+                .get(1)
+                .click();
+
+        return new LocationEditPage(driver, name);
+    }
 }
