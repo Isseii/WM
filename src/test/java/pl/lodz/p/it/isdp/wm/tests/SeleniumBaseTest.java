@@ -3,7 +3,9 @@ package pl.lodz.p.it.isdp.wm.tests;
 import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import pl.lodz.p.it.isdp.wm.Config;
 
 public abstract class SeleniumBaseTest {
@@ -16,7 +18,14 @@ public abstract class SeleniumBaseTest {
 
         Config.initDriverPath();
 
-        driver = new FirefoxDriver();
+        FirefoxOptions firefoxOptions = new FirefoxOptions();
+        FirefoxBinary firefoxBinary = new FirefoxBinary();
+
+        firefoxBinary.addCommandLineOptions("--headless");
+        firefoxOptions.setBinary(firefoxBinary);
+        firefoxOptions.addPreference("intl.accept_languages", "pl");
+
+        driver = new FirefoxDriver(firefoxOptions);
 
         driver.get(Config.subdomain("/faces/common/signIn.xhtml"));
     }
