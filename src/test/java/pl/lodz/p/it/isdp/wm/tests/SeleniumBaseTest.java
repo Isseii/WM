@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import pl.lodz.p.it.isdp.wm.Config;
 
-public class SeleniumBaseTest {
+public abstract class SeleniumBaseTest {
 
 
     protected WebDriver driver;
