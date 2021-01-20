@@ -24,7 +24,7 @@ public class BasePage {
 
     final protected void waitUntil(Predicate<WebDriver> predicate) {
 
-        new WebDriverWait(driver, 10).until(predicate);
+        new WebDriverWait(driver, 30).until(predicate);
     }
 
     final protected void fastWaitUntil(Predicate<WebDriver> predicate) {
