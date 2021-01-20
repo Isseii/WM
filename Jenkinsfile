@@ -27,6 +27,7 @@ pipeline {
                                         sh '''   
                                         chmod 777 ./webdrivers/geckodriver
                                         mvn clean install -DskipTests
+                                        mvn test
                                         sudo expect /home/student/JavaTools/db-derby-10.14.2.0-bin/bin/databaseSetup.sh        
                                         /home/student/JavaTools/payara5.2020.5/bin/asadmin deploy --force /home/student/.jenkins/workspace/WMPipeline/target/WM-1.1.war    
                                         '''
