@@ -33,7 +33,16 @@ pipeline {
                                        }
                                    }
                    
+                            }
                     }
-            }
-    }
+            stage('tests'){
+                           steps{
+                                sh '''
+                                    mvn -DtrimStackTrace=false test
+                                   '''    
+                                }
+
+                          }   
+        
+        }
 }
