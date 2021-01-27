@@ -32,6 +32,10 @@ public abstract class SeleniumBaseTest {
 
     @After
     public void after() {
-        driver.quit();
+        try {
+            driver.quit();
+        } catch (Exception e) {
+            // ignored
+        }
     }
 }
