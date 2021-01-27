@@ -38,7 +38,7 @@ pipeline {
             stage('tests'){
                            steps{
                                 sh '''
-                                    mvn test
+                                    mvn -DtrimStackTrace=false test
                                    '''    
                                 }
 
